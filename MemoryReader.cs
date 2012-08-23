@@ -170,5 +170,18 @@ namespace D3AHSpy
 
             return nReturn;
         }
+
+        public int GetValueInt(IntPtr nAddress, out int nValue)
+        {
+            int nRet = -1;
+            byte[] buffer;
+            nRet = ReadData(nAddress, 4, out buffer);
+            nValue = 0;
+            for (int i = 0; i < 4; i++)
+            {
+                nValue += buffer[i] << i * 8;
+            }
+            return nRet;
+        }
     }
 }
